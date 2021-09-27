@@ -42,10 +42,33 @@
       </div>
 
       <div id="slider">
-        <div class="text-content">
-          <h2 class="text-heading">Chicago</h2>
-          <div class="text-description">
-            Thank you, Chicago - A night we won't forget.
+        <div class="sub-slider" style="display: block;">
+          <img id="image" src="./assets/img/slider/slider-1.jpg" alt="" onclick="changeImage()">
+          <div class="text-content">
+            <h2 class="text-heading">Chicago</h2>
+            <div class="text-description">
+              Thank you, Chicago - A night we won't forget.
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-slider" style="display: none;">
+          <img id="image" src="./assets/img/slider/slider-2.jpg" alt="" onclick="changeImage()">
+          <div class="text-content">
+            <h2 class="text-heading">Chicago 1</h2>
+            <div class="text-description">
+              Thank you, Chicago - A night we won't forget.
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-slider" style="display: none;">
+          <img id="image" src="./assets/img/slider/slider-3.jpg" alt="" onclick="changeImage()">
+          <div class="text-content">
+            <h2 class="text-heading">Chicago 2</h2>
+            <div class="text-description">
+              Thank you, Chicago - A night we won't forget.
+            </div>
           </div>
         </div>
       </div>
@@ -269,7 +292,33 @@
                 header.style.height = '46px';
               }
             }
-          }         
+          }
+          
+          // Xử lí slider
+          let slider = document.querySelectorAll('#slider .sub-slider');
+          let index = 0;
+          let sliderLength = slider.length;
+
+          function autoSlider() {
+            index++;
+            // Kiểm tra nếu ở slider cuối thì chuyển về slider đầu tiên
+            if(index == sliderLength) {
+              index = 0;
+            } else {
+              index = index;
+            }
+            slider[index].style.display = "block";
+
+            // Kiểm tra nếu đang ở slider đầu tiên ẩn slider - 1
+            let indexHidden = 0;
+            if (index == 0)  {
+              indexHidden = sliderLength -1;
+            } else {
+              indexHidden = index - 1;
+            }
+            slider[indexHidden].style.display = "none";
+          }
+          setInterval(autoSlider,2000);
       </script>
   </body>
 </html>
